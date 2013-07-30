@@ -1,0 +1,51 @@
+
+
+<div class="span7">
+	<h1 class="lead">Recent Gratitude</h1>
+	<div class="content-separator"></div>
+</div>
+	<div class="row span6">
+				<% @notes.each do |note| %>
+					<div class="thank-you-note-container">
+						<% if note.image.present?%>
+							<%= image_tag(note.image_url.to_s, :class =>"image") %>
+						<% else%>
+							
+						<% end %>
+						<div class="row">
+							<div class="love-container">
+								love it!
+									<%= image_tag('heart-icon.svg')%>
+							</div>
+							<div class="content-container">
+								<%= note.content %>
+							</div>
+							<div class="share-container">
+								share
+									<%= image_tag('twitter-icon-share.svg')%>
+									<%= image_tag('facebook-icon-share.svg')%>
+									<%= image_tag('pinterest-icon-share.svg')%>
+							</div>
+						</div>
+					</div>
+
+				<% end %>
+				
+	
+
+	</div>
+
+
+
+<div class="content-separator"></div>
+<%= link_to 'New Note', new_note_path %>
+
+
+<%= render 'form'%>
+
+
+
+
+
+
+

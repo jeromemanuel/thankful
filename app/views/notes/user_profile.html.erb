@@ -1,0 +1,13 @@
+<%= @user.name %> </br>
+
+
+My thanks shared: (<%= @count_user_notes.to_i %>)</br>
+<% @user_notes.each do |my_note| %>
+	<%= my_note.content %>
+	<%= image_tag my_note.image_url%>
+<% end %> </br>
+
+
+<% if current_user == @user %>
+	<%= render 'form'%>
+<% end %>

@@ -1,0 +1,108 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require_tree .
+ */
+
+
+.main-quote{
+	font-size: 2.4em;
+	font-family: helvetica neue, helvetica;
+	font-weight: 100;
+	color: #F7931E;
+	text-align: center;
+	background-color: #f4f4f4;
+/*	line-height: 1.2em;*/
+}
+
+.sub-quote{
+	color: #1384C7;
+}
+
+
+
+
+
+
+.image{
+	width: 100%;
+	background: #fff;
+	margin-bottom: 10px;
+/*	max-height: 250px;*/
+/*	float: left;*/
+}
+
+
+.content-separator {
+	border-top: 1px solid #bababa;
+	clear: both;
+	margin: 20px 0 20px 0;
+	width: 100%;
+}
+
+
+.thank-you-note-container{ 
+	width: 100%;
+	border: 1px solid #cccccc;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+
+.love-container{
+	height: 125px;
+	width: 14%;
+	background: #F7931E;
+	color: #fff;
+	font-family: helvetica neue;
+	font-size: 1.2em;
+	font-weight: 100;
+/*	clear: both;*/
+	float: left;
+	text-align: center;
+	margin-right: 2%;
+	vertical-align: middle;
+	padding-top: 55px;
+}
+
+.content-container{
+	height: 180px;
+	width: 68%;
+	background: #1384C7;
+	color: #fff;
+	font-family: helvetica neue;
+	font-size: 1.2em;
+	font-weight: 100;
+/*	clear: right;*/
+	float: left;
+	vertical-align: middle;
+}
+
+.share-container{
+	height: 175px;
+	width: 14%;
+	background: #ADCE74;
+	float: left;
+	text-align: center;
+	margin-left: 2%;
+	color: #fff;
+	font-family: helvetica neue;
+	font-size: 1.2em;
+	font-weight: 100;
+	vertical-align: middle;
+	padding-top: 5px;
+}
+
+
+
+
+
+
+
