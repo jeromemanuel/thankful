@@ -1,10 +1,13 @@
-
-
-<div class="span7">
+<!-- <div class="span notes-background"> -->
+<!-- <div class="span7">
+	<div class="content-separator"></div>
 	<h1 class="lead">Recent Gratitude</h1>
 	<div class="content-separator"></div>
-</div>
+</div> -->
 	<div class="row span6">
+		<!-- <h1 class="lead">Recent Gratitude</h1> -->
+		<div class="recent-header">Recent Gratitude</div>
+		<div class="recent-container">
 				<% @notes.each do |note| %>
 					<div class="thank-you-note-container">
 						<% if note.image.present?%>
@@ -14,38 +17,106 @@
 						<% end %>
 						<div class="row">
 							<div class="love-container">
-								love it!
-									<%= image_tag('heart-icon.svg')%>
+								<% if current_user && note.was_voted_by?(current_user) %>
+									loved!
+									<%= image_tag('heart-icon.svg')%></br>
+									<%= note.reputation_for(:votes).to_i %>
+						
+								<% else %>
+									love it!
+									<%= link_to (image_tag('heart-icon.svg')), vote_note_path(note, type: "love it!"), method: "post" %></br>
+									<%= note.reputation_for(:votes).to_i %>
+								<% end%>
+							
 							</div>
 							<div class="content-container">
-								<%= note.content %>
+								<div class="content-text">
+									<%= note.content %>
+								</div>
 							</div>
 							<div class="share-container">
-								share
-									<%= image_tag('twitter-icon-share.svg')%>
-									<%= image_tag('facebook-icon-share.svg')%>
-									<%= image_tag('pinterest-icon-share.svg')%>
+								share</br>
+									<!-- AddThis Button BEGIN -->
+									<div class="addthis_toolbox custom_images ">
+										<a class="addthis_button_twitter"><%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%></a>
+										<a class="addthis_button_facebook"><%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+										</a>
+										<a class="addthis_button_pinterest_share"><%= image_tag('pinterest-icon-share.svg')%>
+										</a>
+										<!-- <a class="addthis_button_email"><%= image_tag('pinterest-icon-share.svg')%>
+																				</a> -->
+									</div>
+									<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+									<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
+									<!-- AddThis Button END -->
+									<!-- <%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%>
+									<%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+									<%= image_tag('pinterest-icon-share.svg')%> -->
 							</div>
 						</div>
 					</div>
 
 				<% end %>
 				
-	
-
+				<%= paginate @notes  %>
+				
+		</div>
 	</div>
-
-
-
-<div class="content-separator"></div>
-<%= link_to 'New Note', new_note_path %>
-
-
-<%= render 'form'%>
-
-
-
-
+	<div class="span4 offset1">
+		<div class="popular-header">POPULAR</div>
+		<div class="popular-container">
+		<% @popular_notes.most_voted.each do |note| %>
+			<div class="thank-you-note-container">
+				<% if note.image.present?%>
+					<%= image_tag(note.image_url.to_s, :class =>"image") %>
+				<% else%>
+					
+				<% end %>
+				<div class="row">
+					<div class="love-container">
+						<% if current_user && note.was_voted_by?(current_user) %>
+							loved!
+							<%= image_tag('heart-icon.svg')%></br>
+							<%= note.reputation_for(:votes).to_i %>
+				
+						<% else %>
+							love it!
+							<%= link_to (image_tag('heart-icon.svg')), vote_note_path(note, type: "love it!"), method: "post" %></br>
+							<%= note.reputation_for(:votes).to_i %>
+						<% end%>
+					
+					</div>
+					<div class="content-container">
+						<div class="content-text">
+							<%= note.content %>
+						</div>
+					</div>
+					<div class="share-container">
+						share</br>
+							<!-- AddThis Button BEGIN -->
+							<div class="addthis_toolbox custom_images ">
+								<a class="addthis_button_twitter"><%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%></a>
+								<a class="addthis_button_facebook"><%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+								</a>
+								<a class="addthis_button_pinterest_share"><%= image_tag('pinterest-icon-share.svg')%>
+								</a>
+								<!-- <a class="addthis_button_email"><%= image_tag('pinterest-icon-share.svg')%>
+																		</a> -->
+							</div>
+							<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+							<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
+							<!-- AddThis Button END -->
+							<!-- <%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%>
+							<%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+							<%= image_tag('pinterest-icon-share.svg')%> -->
+					</div>
+				</div>
+			</div>
+		<% end %>
+		</div>
+	</div>	
+	
+<!-- </div> -->
 
 
 

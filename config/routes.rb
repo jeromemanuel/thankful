@@ -5,7 +5,9 @@ Thankful::Application.routes.draw do
   get '/:id/user' => 'notes#user_profile', as: :user_profile
   
   root :to => 'notes#index'
-  resources :notes
+  resources :notes do
+    member { post :vote }
+  end
 
 
 

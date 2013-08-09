@@ -35,6 +35,15 @@
 @navbarBackground: #ffffff;
 @navbarBackgroundHighlight: #ffffff;
 
+
+.navbar {
+  overflow: visible;
+  margin-bottom: 20px;
+  *position: relative;
+  *z-index: 2;
+
+}
+
 .navbar .brand {
   float: left;
   display: block;
@@ -49,8 +58,7 @@
 	border: 0 !important;
   box-shadow: none !important;
   -webkit-box-shadow: none !important;
-	
- 	background:transparent !important;
+	background: transparent !important;
 
 }
 
@@ -105,4 +113,28 @@
 }
 .nav-list > li > a {
   padding: 10px;
+}
+
+.btn-share-thanks {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 300;
+	font-family: helvetica neue, helvetica;
+	letter-spacing: 1px;
+  line-height: 1.428571429;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+       -o-user-select: none;
+          user-select: none;
+	color: #ffffff;
+	background-color: #F7931E;
+	border-color: #F7931E;
 }

@@ -1,23 +1,47 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <b>Content:</b>
-  <%= @note.content %>
-</p>
+<div class="row span6">
+				<div class="thank-you-note-container">
+					<% if @note.image.present?%>
+						<%= image_tag(@note.image_url.to_s, :class =>"image") %>
+					<% else%>
+						
+					<% end %>
+					<div class="row">
+						<div class="love-container">
+							love it!</br>
+								<%= image_tag('heart-icon.svg')%>
+						</div>
+						<div class="content-container">
+							<div class="content-text">
+								<%= @note.content %>
+								<div class="addthis_toolbox custom_images ">
+									<a class="addthis_button_email"><%= image_tag('email_icon.svg')%></a>
+								</div>
+								
+							</div>
+						</div>
+						<div class="share-container">
+							share</br>
+								<!-- AddThis Button BEGIN -->
+								<div class="addthis_toolbox custom_images ">
+									<a class="addthis_button_twitter"><%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%></a>
+									<a class="addthis_button_facebook"><%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+									</a>
+									<a class="addthis_button_pinterest_share"><%= image_tag('pinterest-icon-share.svg')%>
+									</a>
+									<!-- <a class="addthis_button_email"><%= image_tag('email_icon.svg')%>
+																			</a> -->
+								</div>
+								<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+								<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
+								<!-- AddThis Button END -->
+								<!-- <%= image_tag('twitter-icon-share.svg', :class =>"share-icons")%>
+								<%= image_tag('facebook-icon-share.svg', :class => "share-icons")%>
+								<%= image_tag('pinterest-icon-share.svg')%> -->
+						</div>
+					</div>
+				</div>
 
-<p>
-  <b>Image:</b>
-  <%= image_tag @note.image_url.to_s %>
-</p>
+			
 
-<p>
-  <b>Tags:</b>
-  <%= @note.tags %>
-</p>
-
-	<%= @note.user.name %></br>
-
-
-
-<%= link_to 'Edit', edit_note_path(@note) %> |
-<%= link_to 'Back', notes_path %>
+</div>

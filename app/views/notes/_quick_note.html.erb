@@ -12,21 +12,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :content %><br />
+		<h1 class="lead">
+			What are you thankful for?
+		</h1>
     <%= f.text_area :content, :rows => "5", :maxlength => 200 %>
   </div>
   <div class="field">
-    <%= f.label :image %><br />
-    <%= f.file_field :image %>
+		<i class="icon-camera icon-2x"></i>
+		<%= f.file_field :image %> 
   </div>
-  <div class="field">
-    <%= f.label :tags %><br />
-    <%= f.text_field :tags %>
-  </div>
+
   <div class="field">	
 	<%= f.hidden_field :user_id %>
 	</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit 'Share Gratitude', :class => 'btn-share-thanks'%>
   </div>
 <% end %>

@@ -4,10 +4,13 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.all
+    @notes = Note.order(:created_at).page(params[:page]).per(5)
+    # @notes = Note.all
     @user = User.find_by_id(params[:id])
     @note = Note.new
     @note.user = current_user
+    
+    @popular_notes = Note.page(params[:page]).per(5)
     
     respond_to do |format|
       format.html # index.html.erb
@@ -94,8 +97,22 @@ class NotesController < ApplicationController
     @note.destroy
 
     respond_to do |format|
-      format.html { redirect_to notes_url }
+      format.html { redirect_to user_profile_path }
       format.json { head :no_content }
     end
   end
+  
+  def vote
+    value = params[:type] == "love it!" ? 1 : -1
+    @note = Note.find(params[:id])
+    @note.add_or_update_evaluation(:votes, value, current_user)
+    redirect_to :back, notice: "Thank you for voting"
+  end
+  
+
+  
+  
+  
+  
+  
 end

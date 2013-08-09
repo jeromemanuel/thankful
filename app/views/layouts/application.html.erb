@@ -33,6 +33,8 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+
   </head>
   <body>
 
@@ -48,9 +50,30 @@
 					<%= link_to (image_tag("thethankful.svg", :class => 'brand')), root_url  %>
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
-              <li><%= link_to "ABOUT", "/path1"  %></li>
-              <li><%= link_to "SIGNUP", "/path2"  %></li>
-              <li><%= link_to "LOGIN", "/path3"  %></li>
+	
+	           	<% if user_signed_in? %>
+							<!-- <li>	<%= link_to root_url do %> 
+											<i class="icon-globe icon-large"></i> DISCOVER
+										<% end %>
+							</li> -->
+							<li>  <%= link_to user_profile_path(current_user.id) do %>
+											<i class="icon-user icon-large"></i> PROFILE
+										<% end %>
+							</li>
+							<li>  <%= link_to edit_user_registration_path do%> 
+											<i class="icon-cog icon-large"></i> SETTINGS
+										<%  end %>
+							</li>
+							<li>  <%= link_to destroy_user_session_path, method: :delete do %> 
+											<i class="icon-signout icon-large"></i> LOGOUT
+										<% end %>
+							</li>
+
+							<% else %>
+							<li>	<%= link_to "ABOUT",  %> </li>
+							<li>  <%= link_to "SIGNUP", new_user_registration_path, { :class => 'sign-up-text'} %> </li>
+							<li>  <%= link_to "LOGIN", new_user_session_path %> </li>	
+            	<% end %>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -59,31 +82,53 @@
 			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
 				<span class="sub-quote">Share what you are thankful for!</span>
 			</h1>
+			<% if !user_signed_in? %>
+				<h2 class="value-prop"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non fermentum mi.</br> Suspendisse pellentesque justo sed sapien auctor,</br> a rhoncus augue ullamcorper. Nulla elementum magna ut dui cras amet.</br></br>
+					<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
+				</h2>
+			<% end %>
     <div class="container-fluid">
       <div class="row-fluid">
         <div class="span3">
+									
                   <div class="well sidebar-nav">
-                    <ul class="nav nav-list">
-                      <li><%= link_to "Popular", ""  %></li>
-                      <li><%= link_to "Inspiring", ""  %></li>
-                      <li><%= link_to "Lovely", ""  %></li>
-                    </ul> 
+                  <% if current_page?(root_url) && user_signed_in? %>
+  									<!-- <ul class="nav nav-list">
+  									                      <li><%= link_to "Popular", ""  %></li>
+  									                      <li><%= link_to "Inspiring", ""  %></li>
+  									                      <li><%= link_to "Lovely", ""  %></li>
+  									                    </ul> --> 
+										<%= render 'quick_note'%>
+									<% elsif user_signed_in? && current_page?(user_profile_path(current_user.id)) %> 
+											<%= render 'quick_note'%>
+									<% else %>
+										<!-- <%= link_to 'Be Thankful!', new_user_registration_path %> -->
+									<% end %>
 										
            </div> <!--/.well -->
         </div> <!--/span-->
         <div class="span9">
-          <%= bootstrap_flash %>
-						
+					<div class="flash-alert-width">
+         		<%= bootstrap_flash %>
+					</div>
           <%= yield %>
         </div>
       </div><!--/row-->
 
-      <footer>
-        <p>&copy; Company 2012</p>
-      </footer>
+			
+
 
     </div> <!-- /container -->
-
+		<% if !user_signed_in? %>
+			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
+				<span class="sub-quote">Share what you are thankful for!</span>
+				<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
+			</h1>
+		<% end %>
+		
+		<footer>
+      <p class="pull-right">&copy; that1spot, LLC 2012</p>
+    </footer>
     <!-- Javascripts
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->

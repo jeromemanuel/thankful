@@ -46,3 +46,7 @@ gem 'devise'
 gem "rmagick"
 gem "carrierwave"
 gem 'fog'
+
+gem 'kaminari'
+
+gem 'activerecord-reputation-system', require: 'reputation_system'
