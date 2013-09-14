@@ -70,7 +70,7 @@
 							</li>
 
 							<% else %>
-							<li>	<%= link_to "ABOUT",  %> </li>
+							<li>	<%= link_to "ABOUT",  about_path %> </li>
 							<li>  <%= link_to "SIGNUP", new_user_registration_path, { :class => 'sign-up-text'} %> </li>
 							<li>  <%= link_to "LOGIN", new_user_session_path %> </li>	
             	<% end %>
@@ -82,10 +82,15 @@
 			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
 				<span class="sub-quote">Share what you are thankful for!</span>
 			</h1>
-			<% if !user_signed_in? %>
-				<h2 class="value-prop"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non fermentum mi.</br> Suspendisse pellentesque justo sed sapien auctor,</br> a rhoncus augue ullamcorper. Nulla elementum magna ut dui cras amet.</br></br>
+			<% if !user_signed_in? && current_page?(root_url) %>
+				<h2 class="value-prop"> <i class="icon-edit icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-envelope icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-user icon-2x"></i> <i class="icon-smile icon-2x"></i> </br> Write It, Email It, Bring Happiness!</br></br><!-- <div class="content-separator-value"></div> -->Send a simple thank you and make someone's day!</br>Bring a smile to their face by showing your appreciation for</br> how they inspired you, motivated you, or helped you with something.</br><!-- Tell someone how grateful you are that they've always been there for you.</br>Or just share the things you love like the simple pleasures of life:  </br> -->
 					<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
 				</h2>
+			<% else %>
+				<% if current_page?(root_url)%>
+					</br>
+					</br>
+				<% end %>
 			<% end %>
     <div class="container-fluid">
       <div class="row-fluid">
@@ -98,10 +103,44 @@
   									                      <li><%= link_to "Inspiring", ""  %></li>
   									                      <li><%= link_to "Lovely", ""  %></li>
   									                    </ul> --> 
-										<%= render 'quick_note'%>
+										<%= render 'quick_note'%></br>
+										<div class="content-separator"></div></br>
+										<h1 class="lead">Tell your friends about the </br>Thankful Movement!</h1>
+										<!-- AddThis Button BEGIN -->
+										<div class="addthis_toolbox custom_images ">
+											<a class="addthis_button_twitter"><%= image_tag("twitter-icon-share-green.svg")%></a>
+											<a class="addthis_button_facebook"><%= image_tag("facebook-icon-share-green.svg")%></a>
+											<a class="addthis_button_pinterest_share"><%= image_tag("pinterest-icon-share-green.svg")%></a>
+											<a class="addthis_button_email"><%= image_tag("email_icon_share_green.svg")%></a>
+										</div>
+										<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
 									<% elsif user_signed_in? && current_page?(user_profile_path(current_user.id)) %> 
-											<%= render 'quick_note'%>
+										<%= render 'quick_note'%></br>
+										<div class="content-separator"></div></br>
+										<h1 class="lead">Tell your friends about the </br>Thankful Movement!</h1>
+										<!-- AddThis Button BEGIN -->
+										<div class="addthis_toolbox custom_images ">
+											<a class="addthis_button_twitter"><%= image_tag("twitter-icon-share-green.svg")%></a>
+											<a class="addthis_button_facebook"><%= image_tag("facebook-icon-share-green.svg")%></a>
+											<a class="addthis_button_pinterest_share"><%= image_tag("pinterest-icon-share-green.svg")%></a>
+											<a class="addthis_button_email"><%= image_tag("email_icon_share_green.svg")%></a>
+										</div>
+										<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
 									<% else %>
+										<h1 class="lead">Tell your friends about the </br>Thankful Movement!</h1>
+										<!-- AddThis Button BEGIN -->
+										<div class="addthis_toolbox custom_images ">
+											<a class="addthis_button_twitter"><%= image_tag("twitter-icon-share-green.svg")%></a>
+											<a class="addthis_button_facebook"><%= image_tag("facebook-icon-share-green.svg")%></a>
+											<a class="addthis_button_pinterest_share"><%= image_tag("pinterest-icon-share-green.svg")%></a>
+											<a class="addthis_button_email"><%= image_tag("email_icon_share_green.svg")%></a>
+										</div>
+										<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
+										
+										<h1 class="lead"><%= link_to 'Learn more about the Thankful Movement!', about_url %></h1>
 										<!-- <%= link_to 'Be Thankful!', new_user_registration_path %> -->
 									<% end %>
 										
@@ -119,7 +158,13 @@
 
 
     </div> <!-- /container -->
-		<% if !user_signed_in? %>
+		<% if !user_signed_in? && current_page?(root_url) %>
+			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
+				<span class="sub-quote">Share what you are thankful for!</span>
+				<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
+			</h1>
+			
+		<% elsif !user_signed_in? && current_page?(about_url) %>
 			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
 				<span class="sub-quote">Share what you are thankful for!</span>
 				<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>

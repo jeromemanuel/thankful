@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :authenticate_user!, except: [:index, :show, :about]
 
   # GET /notes
   # GET /notes.json
@@ -16,6 +16,10 @@ class NotesController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @notes }
     end
+  end
+  
+  def about 
+    
   end
 
   # GET /notes/1
@@ -37,6 +41,8 @@ class NotesController < ApplicationController
     @count_user_notes = Note.count(:all, :conditions => {:user_id => params[:id]})
     @note = Note.new
     @note.user = current_user
+    
+    @influence_score = current_user.reputation_for(:votes).to_i + @count_user_notes.to_i
     
   end
 
@@ -73,6 +79,8 @@ class NotesController < ApplicationController
       end
     end
   end
+
+
 
   # PUT /notes/1
   # PUT /notes/1.json

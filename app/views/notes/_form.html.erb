@@ -12,21 +12,26 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :content %><br />
+		<h1 class="lead">What are you thankful for?</h1>
     <%= f.text_area :content, :rows => "5", :maxlength => 200 %>
   </div>
   <div class="field">
-    <%= f.label :image %><br />
+		<i class="icon-camera icon-2x"></i>
     <%= f.file_field :image %>
   </div>
-  <div class="field">
+	
+	<% if @note.image_url.present?%>
+	Current photo:</br>
+		<%= image_tag @note.image_url.to_s %>
+	<% end %>
+  <!-- <div class="field">
     <%= f.label :tags %><br />
     <%= f.text_field :tags %>
-  </div>
+  </div> -->
   <div class="field">	
 	<%= f.hidden_field :user_id %>
 	</div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update Thank You Note", :class => "btn-share-thanks" %>
   </div>
 <% end %>
