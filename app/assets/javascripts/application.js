@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require_tree .
+
+
+function updateCountdown() {
+    // 200 is the max message length
+    var remaining = 200 - jQuery('.message').val().length;
+    jQuery('.countdown').text(remaining + ' characters remaining');
+}
+
+jQuery(document).ready(function($) {
+    updateCountdown();
+    $('.message').change(updateCountdown);
+    $('.message').keyup(updateCountdown);
+});

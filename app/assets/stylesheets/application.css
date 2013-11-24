@@ -25,13 +25,23 @@
 /*	background-color: #f4f4f4;*/
 /*	line-height: 1.2em;*/
 	width: 100%;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	letter-spacing: 1px;
 }
 
 .sub-quote{
+/*	border-bottom: 1px solid #187BAD;*/
 /*	color: #1384C7;*/
 	color: #fff;
+}
+
+
+.note-quote{
+	border-top: 1px solid #187BAD;
+	color: #F7931E;
+	padding-top: 20px;
+	
 }
 
 .value-prop{
@@ -46,9 +56,14 @@
 	margin-bottom: 40px;
 	padding-top: 40px;
 	padding-bottom: 40px;
+	letter-spacing: 1px;
 }
 
-
+.value-prop-learn{
+	font-size: 0.5em;
+	font-family: helvetica neue, helvetica;
+	font-weight: 200;
+}
 
 
 .image{

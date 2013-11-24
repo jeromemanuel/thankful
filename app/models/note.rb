@@ -2,6 +2,7 @@ class Note < ActiveRecord::Base
   attr_accessible :content, :image, :tags, :user_id
   
   validates :content, :presence => true
+  validates_length_of :content, :maximum => 200
   
   belongs_to :user
   

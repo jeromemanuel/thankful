@@ -33,7 +33,7 @@
     <!-- For all other devices -->
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
-
+		<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
   </head>
   <body>
@@ -47,7 +47,7 @@
             <span class="icon-bar"></span>
           </a>
           <!-- <a class="brand" href="">Thankful</a> -->
-					<%= link_to (image_tag("thethankful.svg", :class => 'brand')), root_url  %>
+					<%= link_to (image_tag("thethankful.png", :class => 'brand')), root_url  %>
           <div class="container-fluid nav-collapse">
             <ul class="nav pull-right">
 	
@@ -79,13 +79,25 @@
         </div>
       </div>
     </div>
-			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
-				<span class="sub-quote">Share what you are thankful for!</span>
+			<h1 class="main-quote">
+								“The most thankful often seem to be the most happy.”</br>
+								<span class="sub-quote">Share what you are thankful for!</span></br></br>
+								<span class="note-quote">Simple Thank You Notes (200-Characters at a time) </span>
+
 			</h1>
 			<% if !user_signed_in? && current_page?(root_url) %>
-				<h2 class="value-prop"> <i class="icon-edit icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-envelope icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-user icon-2x"></i> <i class="icon-smile icon-2x"></i> </br> Write It, Email It, Bring Happiness!</br></br><!-- <div class="content-separator-value"></div> -->Send a simple thank you and make someone's day!</br>Bring a smile to their face by showing your appreciation for</br> how they inspired you, motivated you, or helped you with something.</br><!-- Tell someone how grateful you are that they've always been there for you.</br>Or just share the things you love like the simple pleasures of life:  </br> -->
+				<h2 class="value-prop"> Making the World a better and more grateful place, one thank you at a time. </br>
+				Be a part of the Thankful Movement.
+				<span class="value-prop-learn">
+					<%= link_to 'Learn more >>', about_url %></br></br>
+				</span>
+				
+				<i class="icon-edit icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-envelope icon-2x"></i> <i class="icon-chevron-right icon-large"></i><i class="icon-chevron-right icon-large"></i> <i class="icon-user icon-2x"></i> <i class="icon-smile icon-2x"></i> </br> Write It, Email It, Bring Happiness!</br><!-- <div class="content-separator-value"></div> -->Send a simple thank you note and make someone's day!</br><!--Bring a smile to their face by showing your appreciation.</br>  how they inspired you, motivated you, or helped you with something. </br> Tell someone how grateful you are that they've always been there for you.</br>Or just share the things you love like the simple pleasures of life:  </br> -->
 					<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
+					
+
 				</h2>
+
 			<% else %>
 				<% if current_page?(root_url)%>
 					</br>
@@ -129,6 +141,11 @@
 										<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
 									<% else %>
+										<% if current_page?(about_url)%>
+										<% else %>
+											<h1 class="lead"><%= link_to 'Learn more about the Thankful Movement >>', about_url %></h1>
+											<div class="content-separator"></div>
+										<% end %>
 										<h1 class="lead">Tell your friends about the </br>Thankful Movement!</h1>
 										<!-- AddThis Button BEGIN -->
 										<div class="addthis_toolbox custom_images ">
@@ -140,7 +157,7 @@
 										<script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
 										<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52034f6622311efe"></script>
 										
-										<h1 class="lead"><%= link_to 'Learn more about the Thankful Movement!', about_url %></h1>
+										
 										<!-- <%= link_to 'Be Thankful!', new_user_registration_path %> -->
 									<% end %>
 										
@@ -159,17 +176,19 @@
 
     </div> <!-- /container -->
 		<% if !user_signed_in? && current_page?(root_url) %>
-			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
-				<span class="sub-quote">Share what you are thankful for!</span>
+			<h1 class="main-quote">It's your turn to share a simple thank you.</br>
+			<span class="sub-quote"></span>
 				<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
 			</h1>
 			
 		<% elsif !user_signed_in? && current_page?(about_url) %>
-			<h1 class="main-quote">“The most thankful often seem to be the most happy.”</br>
-				<span class="sub-quote">Share what you are thankful for!</span>
+			<h1 class="main-quote">It's your turn to share a simple thank you.</br>
+				<span class="sub-quote"></span>
 				<%= button_to "Start Sharing My Gratitude", new_user_registration_url, :method => :get, :class => "btn-share-thanks" %>
 			</h1>
 		<% end %>
+		
+
 		
 		<footer>
       <p class="pull-right">&copy; that1spot, LLC 2012</p>

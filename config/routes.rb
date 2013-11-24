@@ -9,7 +9,7 @@ Thankful::Application.routes.draw do
     member { post :vote }
   end
 
-  get '/about' => 'notes#about', as: :about
+  get '/about-the-thankful-movement' => 'notes#about', as: :about
 
 
 end

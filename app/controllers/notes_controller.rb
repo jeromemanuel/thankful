@@ -4,13 +4,13 @@ class NotesController < ApplicationController
   # GET /notes
   # GET /notes.json
   def index
-    @notes = Note.order(:created_at).page(params[:page]).per(5)
+    @notes = Note.order(:created_at).page(params[:page]).per(5).reverse_order
     # @notes = Note.all
     @user = User.find_by_id(params[:id])
     @note = Note.new
     @note.user = current_user
     
-    @popular_notes = Note.page(params[:page]).per(5)
+    @popular_notes = Note.page(params[:page]).per(5).most_voted
     
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,7 @@ class NotesController < ApplicationController
     end
   end
   
-  def about 
+  def about
     
   end
 
@@ -37,12 +37,12 @@ class NotesController < ApplicationController
   
   def user_profile
     @user = User.find_by_id(params[:id])
-    @user_notes = Note.find_all_by_user_id(params[:id])
+    @user_notes = Note.order('created_at DESC').find_all_by_user_id(params[:id])
     @count_user_notes = Note.count(:all, :conditions => {:user_id => params[:id]})
     @note = Note.new
     @note.user = current_user
     
-    @influence_score = current_user.reputation_for(:votes).to_i + @count_user_notes.to_i
+    @happiness_score = current_user.reputation_for(:votes).to_i + @count_user_notes.to_i
     
   end
 

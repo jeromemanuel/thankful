@@ -18,12 +18,12 @@
 						<div class="row">
 							<div class="love-container">
 								<% if current_user && note.was_voted_by?(current_user) %>
-									loved!
+									<!-- loved! -->
 									<%= image_tag('heart-icon-loved.svg')%></br>
 									<%= note.reputation_for(:votes).to_i %>
 						
 								<% else %>
-									love it!
+									<!-- love it! -->
 									<%= link_to (image_tag('heart-icon.svg')), vote_note_path(note, type: "love it!"), method: "post" %></br>
 									<%= note.reputation_for(:votes).to_i %>
 								<% end%>
@@ -66,7 +66,7 @@
 	<div class="span4 offset1">
 		<div class="popular-header"><i class="icon-star"></i> POPULAR </div>
 		<div class="popular-container">
-		<% @popular_notes.most_voted.each do |note| %>
+		<% @popular_notes.each do |note| %>
 			<div class="thank-you-note-container">
 				<% if note.image.present?%>
 					<%= image_tag(note.image_url.to_s, :class =>"image") %>
@@ -76,12 +76,12 @@
 				<div class="row">
 					<div class="love-container">
 						<% if current_user && note.was_voted_by?(current_user) %>
-							loved!
+							<!-- loved! -->
 							<%= image_tag('heart-icon-loved.svg')%></br>
 							<%= note.reputation_for(:votes).to_i %>
 				
 						<% else %>
-							love it!
+							<!-- love it! -->
 							<%= link_to (image_tag('heart-icon.svg')), vote_note_path(note, type: "love it!"), method: "post" %></br>
 							<%= note.reputation_for(:votes).to_i %>
 						<% end%>
