@@ -31,14 +31,17 @@
 }
 
 .sub-quote{
-/*	border-bottom: 1px solid #187BAD;*/
+	border-bottom: 1px solid #187BAD;
 /*	color: #1384C7;*/
 	color: #fff;
+	font-size: 0.9em;
+	padding-bottom: 25px;
+/*	width: 150%;*/
 }
 
 
 .note-quote{
-	border-top: 1px solid #187BAD;
+/*	border-top: 1px solid #187BAD;*/
 	color: #F7931E;
 	padding-top: 20px;
 	
@@ -65,6 +68,18 @@
 	font-weight: 200;
 }
 
+.about-content{
+	font-size: 1.4em;
+	font-family: helvetica neue, helvetica;
+	font-weight: 200;
+	color: #333;
+	line-height: 1.4em;
+/*	letter-spacing: 1px;*/
+}
+
+.brand-source-logo{
+	width: 25%;
+}
 
 .image{
 	width: 100%;
